@@ -48,24 +48,16 @@ const Reservas = db.define(
       },
     },
   },
-  { timestamp: false }
+  { timestamps: false }
 );
 
-Clientes.hasOne(Reservas, {
-    foreignKey: 'id_cliente'
-});
-Reservas.belongsTo(Clientes);
+Clientes.hasOne(Reservas);
+// Reservas.belongsTo(Clientes);
 
-Pagos.hasMany(Reservas, {
-    foreignKey: 'id_pagos'
-});
-Reservas.belongsTo(Pagos)
+Pagos.hasMany(Reservas);
+// Reservas.belongsTo(Pagos)
 
-Habitacion.hasOne(Reservas,{
-    foreignKey: 'id_habitacion'
-});
-Reservas.belongsTo(Habitacion)
-
-
+Habitacion.hasOne(Reservas);
+// Reservas.belongsTo(Habitacion)
 
 module.exports = Reservas;

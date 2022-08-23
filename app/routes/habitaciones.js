@@ -1,6 +1,10 @@
 const controller = require('../controllers/habitaciones');
 const router = require('express').Router();
 
-router.get('/', controller.obtenerHabitaciones);
+//CRUD Habitaciones
+router
+    .get('/', controller.obtenerHabitaciones)
+    .get('/:id', controller.obtenerUnaHabitacion)
+    .post('/', controller.crearHabitaciones);
 
 module.exports = router;

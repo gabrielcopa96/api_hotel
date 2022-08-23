@@ -20,6 +20,6 @@ const Habitacion = db.define('habitaciones', {
         type: Sequelize.STRING,
         allowNull: false
     }
-}, { timestamp: false })
+}, { timestamps: false })
 
 module.exports = Habitacion;

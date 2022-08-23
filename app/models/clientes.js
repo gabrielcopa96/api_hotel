@@ -8,12 +8,12 @@ const Clientes = db.define('clientes', {
         allowNull: false,
         primaryKey: true
     },
-    Nombre: {
+    nombre: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
     },
-    Apellido: {
+    apellido: {
         type: Sequelize.STRING,
         allowNull: false,
     },
@@ -22,17 +22,17 @@ const Clientes = db.define('clientes', {
         allowNull: false,
     },
     telefono: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.BIGINT,
         allowNull: false,
     },
     documento_unico: {
-        type: Sequelize.STRING,
+        type: Sequelize.BIGINT,
         allowNull: false,
     },
     edad: {
         type: Sequelize.INTEGER,
         allowNull: true
     }
-}, { timestamp: false })
+}, { timestamps: false, freezeTableName: true })
 
 module.exports = Clientes;

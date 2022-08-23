@@ -16,7 +16,11 @@ const crearCliente = async (req, res) => {
         const newClient = await Client.create(req.body);
         res.json(newClient);
     } catch (error) {
-        res.send(error)
+        res.json({
+            ok: false,
+            msg: 'Hubieron errores y no se pudo crear correctamente el cliente',
+            error
+        })
     }
 }
 
@@ -29,8 +33,25 @@ const obtenerUnCliente = async (req, res) => {
     }
 }
 
+const actualizarCliente = async (req, res) => {
+    const { id } = req.params;
+    try {
+        const client = await Client.findByPk( id );
+        client.set(req.body);
+        await client.save();
+        return res.json(client)
+    } catch (error) {
+        res.json({
+            ok: false,
+            msg: 'Hubo un error, no se pudo actualizar el cliente',
+            error: error
+        })
+    }
+}
+
 module.exports = {
     obtenerClientes,
     crearCliente,
-    obtenerUnCliente
+    obtenerUnCliente,
+    actualizarCliente
 }

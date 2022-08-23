@@ -10,13 +10,13 @@ const Pagos = db.define('pagos', {
         allowNull: false,
         primaryKey: true
     },
-    id_metodopago: {
-        type: Sequelize.INTEGER,
-        references: {
-            model: 'metodopagos',
-            key: 'id_metodo'
-        }
-    },
+    // id_metodopago: {
+    //     type: Sequelize.INTEGER,
+    //     references: {
+    //         model: 'metodopagos',
+    //         key: 'id_metodo'
+    //     }
+    // },
     monto: {
         type: Sequelize.FLOAT,
     },
@@ -26,13 +26,10 @@ const Pagos = db.define('pagos', {
     total: {
         type: Sequelize.FLOAT,
     }
-}, { timestamp: false})
+}, { timestamps: false})
 
 
-MetodoPago.hasMany(Pagos, {
-    foreignKey: 'id_metodopago'
-});
-Pagos.belongsTo(MetodoPago);
+
 
 
 module.exports = Pagos;

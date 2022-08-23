@@ -12,6 +12,6 @@ const MetodoPago = db.define('metodopagos', {
         type: Sequelize.STRING,
         allowNull: false,
     }
-}, { timestamp: false })
+}, { timestamps: false })
 
 module.exports = MetodoPago;

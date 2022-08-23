@@ -1,6 +1,10 @@
 const controller = require('../controllers/pagos');
 const router = require('express').Router();
 
-router.get('/', controller.obtenerPagos);
+// CRUD Pagos
+router
+    .get('/', controller.obtenerPagos)
+    .get('/:id', controller.obtenerPago)
+    .delete('/:id', controller.eliminarPago);
 
 module.exports = router;

@@ -12,35 +12,35 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,600;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Documentacion APIREST Hoteleria</h1>
+    <h1>Documentacion</h1>
     <section class="container__main">
         <h2>CLIENTES</h2>
         <div class="container__endpoint">
             <h3 class="endpoint__get">GET</h3>
             <div class="section__endpoint">
                 <p>/clientes</p>
-                <p>-> Obtiene todos los clientes</p>
+                <p> -> Obtiene todos los clientes</p>
             </div>
         </div>
         <div class="container__endpoint">
             <h3 class="endpoint__get">GET</h3>
             <div class="section__endpoint">
                 <p>/clientes/:id</p>
-                <p>-> Encuentra el cliente que corresponda al ID pasado por parametro</p>
+                <p> -> Encuentra el cliente que corresponda al ID pasado por parametro</p>
             </div>
         </div>
         <div class="container__endpoint">
             <h3 class="endpoint__post">POST</h3>
             <div class="section__endpoint">
                 <p>/clientes</p>
-                <p>-> Agrega un nuevo cliente </p>
+                <p> -> Agrega un nuevo cliente </p>
             </div>
         </div>
         <div class="container__endpoint">
             <h3 class="endpoint__put">PUT</h3>
             <div class="section__endpoint">
                 <p>/clientes/:id</p>
-                <p>-> Actualiza el cliente que corresponda al ID pasado por parametro</p>
+                <p> -> Actualiza el cliente que corresponda al ID pasado por parametro</p>
             </div>
         </div>
     </section>
@@ -50,35 +50,93 @@
             <h3 class="endpoint__get">GET</h3>
             <div class="section__endpoint">
                 <p>/reservas</p>
-                <p>-> Obtiene todas las reservas</p>
+                <p> -> Obtiene todas las reservas</p>
             </div>
         </div>
         <div class="container__endpoint">
             <h3 class="endpoint__get">GET</h3>
             <div class="section__endpoint">
                 <p>/reservas/:id</p>
-                <p>-> Encuentra la reserva que corresponda al ID pasado por parametro</p>
+                <p> -> Encuentra la reserva que corresponda al ID pasado por parametro</p>
             </div>
         </div>
         <div class="container__endpoint">
             <h3 class="endpoint__get">GET</h3>
             <div class="section__endpoint">
                 <p>/reservas?status=status</p>
-                <p>-> Filtra todas las reservas segun el estado que se pase.</p>
+                <p> -> Filtra todas las reservas segun el estado que se pase.</p>
             </div>
         </div>
         <div class="container__endpoint">
             <h3 class="endpoint__put">PUT</h3>
             <div class="section__endpoint">
                 <p>/reservas/:id?status=status</p>
-                <p>-> Actualiza el estado del la reserva</p>
+                <p> -> Actualiza el estado del la reserva</p>
             </div>
         </div>
         <div class="container__endpoint">
             <h3 class="endpoint__delete">DELETE</h3>
             <div class="section__endpoint">
                 <p>/reservas/:id</p>
-                <p>-> Elimina la reserva por su ID</p>
+                <p> -> Elimina la reserva por su ID</p>
+            </div>
+        </div>
+    </section>
+    <section class="container__main">
+        <h2>PAGOS</h2>
+        <div class="container__endpoint">
+            <h3 class="endpoint__get">GET</h3>
+            <div class="section__endpoint">
+                <p>/pagos</p>
+                <p> -> Obtiene todas los pagos</p>
+            </div>
+        </div>
+        <div class="container__endpoint">
+            <h3 class="endpoint__get">GET</h3>
+            <div class="section__endpoint">
+                <p>/pagos/:id</p>
+                <p> -> Encuentra el pago que corresponda al ID pasado por parametro</p>
+            </div>
+        </div>
+        <div class="container__endpoint">
+            <h3 class="endpoint__delete">DELETE</h3>
+            <div class="section__endpoint">
+                <p>/pagos/:id</p>
+                <p> -> Elimina el pago por medio de su ID</p>
+            </div>
+        </div>
+    </section>
+    <section class="container__main">
+        <h2>HABITACIONES</h2>
+        <div class="container__endpoint">
+            <h3 class="endpoint__get">GET</h3>
+            <div class="section__endpoint">
+                <p>/habitaciones</p>
+                <p> -> Obtiene todas las habitaciones</p>
+            </div>
+        </div>
+        <div class="container__endpoint">
+            <h3 class="endpoint__get">GET</h3>
+            <div class="section__endpoint">
+                <p>/habitaciones/:id</p>
+                <p> -> Encuentra la habitacion que corresponda al ID pasado por parametro</p>
+            </div>
+        </div>
+    </section>
+    <section class="container__main">
+        <h2>METODOS DE PAGOS</h2>
+        <div class="container__endpoint">
+            <h3 class="endpoint__get">GET</h3>
+            <div class="section__endpoint">
+                <p>/metodos</p>
+                <p> -> Obtiene todos los medios de pago</p>
+            </div>
+        </div>
+        <div class="container__endpoint">
+            <h3 class="endpoint__get">GET</h3>
+            <div class="section__endpoint">
+                <p>/metodos/:id</p>
+                <p> -> Encuentra el metodo de pago que corresponda al ID pasado por parametro</p>
             </div>
         </div>
     </section>

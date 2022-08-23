@@ -5,7 +5,8 @@ const router = require('express').Router();
 router
     .get('/', controller.obtenerClientes)
     .post('/', controller.crearCliente)
-    .get('/:id', controller.obtenerUnCliente);
+    .get('/:id', controller.obtenerUnCliente)
+    .put('/:id', controller.actualizarCliente);
 
 
     // .get('/', controller.getAllClients)

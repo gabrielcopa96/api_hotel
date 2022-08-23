@@ -3,7 +3,11 @@ const MetodoPago = require('../models/metodopago');
 const obtenerMetodoPago = async (req, res) => {
     try {
         const getMethodPay = await MetodoPago.findAll();
-        res.json(getMethodPay);
+        getMethodPay.length
+        ? res.json(getMethodPay)
+        : res.json({
+            msg: 'No existen metodos de pagos actualmente'
+        })
     } catch (error) {
         res.json({
             ok: false,
@@ -22,13 +26,23 @@ const metodos = [
     },
     {
         tipo: 'Efectivo'
+    },
+    {
+        tipo: 'transferencia'
     }
 ]
 
 const crearMetodoPago = async (req, res) => {
     try {
-        const newMethodPay = await MetodoPago.bulkCreate(metodos)
-        res.json(newMethodPay);
+        const existMetodos = await MetodoPago.findAll()
+        if(!existMetodos.length) {
+            const newMethodPay = await MetodoPago.bulkCreate(metodos)
+            return res.json(newMethodPay);
+        } else {
+            return res.json({
+                msg: 'Ya existen los metodos de pago'
+            })
+        }
     } catch (error) {
         res.json({
             ok: false,
@@ -38,7 +52,25 @@ const crearMetodoPago = async (req, res) => {
     }
 }
 
+const obtenerUnMetodoPago = async (req, res) => {
+    const { id } = req.params
+    try {
+        
+        const metodopago = await MetodoPago.findByPk( id );
+        res.json(metodopago);
+
+    } catch (error) {
+        
+        res.json({
+            ok: false,
+            msg: 'Hubo un error no se pudo obtener el metodo de pago'
+        })
+        
+    }
+}
+
 module.exports = {
     obtenerMetodoPago,
-    crearMetodoPago
+    crearMetodoPago,
+    obtenerUnMetodoPago
 }
