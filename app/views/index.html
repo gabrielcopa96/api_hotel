@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docs Api Hotel</title>
+
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,600;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Documentacion APIREST Hoteleria</h1>
+    <section class="container__main">
+        <h2>CLIENTES</h2>
+        <div class="container__endpoint">
+            <h3 class="endpoint__get">GET</h3>
+            <div class="section__endpoint">
+                <p>/clientes</p>
+                <p>-> Obtiene todos los clientes</p>
+            </div>
+        </div>
+        <div class="container__endpoint">
+            <h3 class="endpoint__get">GET</h3>
+            <div class="section__endpoint">
+                <p>/clientes/:id</p>
+                <p>-> Encuentra el cliente que corresponda al ID pasado por parametro</p>
+            </div>
+        </div>
+        <div class="container__endpoint">
+            <h3 class="endpoint__post">POST</h3>
+            <div class="section__endpoint">
+                <p>/clientes</p>
+                <p>-> Agrega un nuevo cliente </p>
+            </div>
+        </div>
+        <div class="container__endpoint">
+            <h3 class="endpoint__put">PUT</h3>
+            <div class="section__endpoint">
+                <p>/clientes/:id</p>
+                <p>-> Actualiza el cliente que corresponda al ID pasado por parametro</p>
+            </div>
+        </div>
+    </section>
+    <section class="container__main">
+        <h2>RESERVAS</h2>
+        <div class="container__endpoint">
+            <h3 class="endpoint__get">GET</h3>
+            <div class="section__endpoint">
+                <p>/reservas</p>
+                <p>-> Obtiene todas las reservas</p>
+            </div>
+        </div>
+        <div class="container__endpoint">
+            <h3 class="endpoint__get">GET</h3>
+            <div class="section__endpoint">
+                <p>/reservas/:id</p>
+                <p>-> Encuentra la reserva que corresponda al ID pasado por parametro</p>
+            </div>
+        </div>
+        <div class="container__endpoint">
+            <h3 class="endpoint__get">GET</h3>
+            <div class="section__endpoint">
+                <p>/reservas?status=status</p>
+                <p>-> Filtra todas las reservas segun el estado que se pase.</p>
+            </div>
+        </div>
+        <div class="container__endpoint">
+            <h3 class="endpoint__put">PUT</h3>
+            <div class="section__endpoint">
+                <p>/reservas/:id?status=status</p>
+                <p>-> Actualiza el estado del la reserva</p>
+            </div>
+        </div>
+        <div class="container__endpoint">
+            <h3 class="endpoint__delete">DELETE</h3>
+            <div class="section__endpoint">
+                <p>/reservas/:id</p>
+                <p>-> Elimina la reserva por su ID</p>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

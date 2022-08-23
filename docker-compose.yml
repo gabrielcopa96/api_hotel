@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+  node_backend:
+    container_name: api_hoteleria
+    image: api_hoteleria_28
+    build:
+      context: .
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - PGDATABASE=hotel_db
+      - PGUSER=postgres
+      - PGPASSWORD=12345
+      - PGHOST=node_db
+    depends_on:
+      - node_db
+  node_db:
+    container_name: db_hoteleria
+    image: "postgres:12"
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=12345
+      - POSTGRES_DB=hotel_db
+    volumes:
+      - nps_data:/var/lib/postgresql/data
+
+volumes:
+  nps_data: {}
