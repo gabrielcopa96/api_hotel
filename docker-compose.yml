@@ -3,7 +3,7 @@ version: "3.8"
 services:
   node_backend:
     container_name: api_hoteleria
-    image: api_hoteleria_31
+    image: api_hoteleria
     build:
       context: .
     ports:
