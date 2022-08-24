@@ -16,7 +16,7 @@ Para correr la api, se necesita de docker y para su instalacion se puede utiliza
 
 # REST API
 
-- Al iniciar la api en la web se mostrara una documentacion con cada uno de los endpoint y que hace cada endpoint
+- Al iniciar la api en la web se mostrara una documentacion con cada uno de los endpoint y una breve explicacion.
 
 # Explicacion endpoint API 
 
