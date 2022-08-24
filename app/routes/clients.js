@@ -8,10 +8,4 @@ router
     .get('/:id', controller.obtenerUnCliente)
     .put('/:id', controller.actualizarCliente);
 
-
-    // .get('/', controller.getAllClients)
-    // .post('/', controller.createOneClient)
-    // .put('/:id', controller.updateOneClient)
-    // .delete('/:id', controller.deleteOneClient);
-
 module.exports = router;

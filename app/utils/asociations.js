@@ -19,12 +19,10 @@ Pagos.hasMany(Reservas, {
     foreignKey: 'pagoId',
     sourceKey: 'id_pago'
 });
-// Pagos.hasMany(Reservas, { as: 'pagos', foreignKey: 'pagoId'});
 Reservas.belongsTo(Pagos, { 
     foreignKey: 'pagoId',
     targetId: 'id_reserva'
 });
-// Reservas.belongsTo(Pagos, { as: 'pagos', foreignKey: 'pagoId'});
 
 // Uno a Uno
 Clientes.hasOne(Reservas, { 
@@ -32,21 +30,17 @@ Clientes.hasOne(Reservas, {
     sourceKey: 'id_cliente'
 });
 
-// Clientes.hasOne(Reservas, { as: 'clientes', foreignKey: 'clienteId'});
 Reservas.belongsTo(Clientes, { 
     foreignKey: 'clienteId',
     targetId: 'id_reserva'
 });
-// Reservas.belongsTo(Clientes, { as: 'clientes', foreignKey: 'clienteId'});
 
 Habitaciones.hasOne(Reservas, { 
     foreignKey: 'habitacionId',
     sourceKey: 'id_habitacion'
 });
-// Habitaciones.hasOne(Reservas, { as: 'habitaciones', foreignKey: 'habitacionId'});
 Reservas.belongsTo(Habitaciones, { 
     foreignKey: 'habitacionId',
     targetId: 'id_reserva'
 })
-// Reservas.belongsTo(Habitaciones, { as: 'habitaciones', foreignKey: 'habitacionId'})
 
