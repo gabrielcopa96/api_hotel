@@ -8,7 +8,7 @@ Para correr la api, se necesita de docker y para su instalacion se puede utiliza
 
     docker run -p 3001:3001 apihoteleria .
 
-## Ejectuar aplicacion por docker compose
+## Ejecutar aplicacion por docker compose
 
     docker compose build
 
@@ -16,16 +16,17 @@ Para correr la api, se necesita de docker y para su instalacion se puede utiliza
 
 # REST API
 
-- Al iniciar la api en la web se mostrara una documentacion con cada uno de los endpoint y que hace cada endpoint
+- Al iniciar la api en la web se mostrara una documentacion con cada uno de los endpoint y una breve explicacion.
 
 # Explicacion endpoint API 
 
-POST - /metodos
+POST /metodos
 
 - Se cargan 4 metodos comunes de pagos, como lo son efectivo, tarjeta de debito, tarjeta de credito y transferencia,
 se lo hace para ahorrar cargar uno por uno y directamente ya cargar todos con un solo endpoint
 
-POST - /habitaciones
+POST /habitaciones
+
 - Al ejecutar este endpoint se van a cargar por defecto unas 25 habitaciones, por si no quiere las que vienen por defecto
 cargar una por una con el mismo endpoint
 
@@ -43,8 +44,7 @@ que no existen clientes actualmente
 
 GET /clientes/:id
 
-- Obtiene el cliente por medio de su id, en el caso de que no exista el cliente con ese id arroja un mensaje de que no existe
-un cliente con ese id
+- Obtiene el cliente por medio de su id, en el caso de que no exista el cliente con ese id arroja un mensaje de error.
 
 POST /clientes
 
