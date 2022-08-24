@@ -8,7 +8,7 @@ Para correr la api, se necesita de docker y para su instalacion se puede utiliza
 
     docker run -p 3001:3001 apihoteleria .
 
-## Ejectuar aplicacion por docker compose
+## Ejecutar aplicacion por docker compose
 
     docker compose build
 
