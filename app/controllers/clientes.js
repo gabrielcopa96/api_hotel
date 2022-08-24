@@ -27,7 +27,12 @@ const crearCliente = async (req, res) => {
 const obtenerUnCliente = async (req, res) => {
     try {
         const clientOne = await Client.findByPk( req.params.id );
-        res.json(clientOne);
+        clientOne !== null
+        ? res.json(clientOne)
+        : res.json({
+            ok: false,
+            msg: 'El cliente solicitado no existe'
+        })
     } catch (error) {
         res.status(404).send(error)
     }

@@ -39,7 +39,7 @@ app.use('/', router);
 try {
     // conexion a la base de datos postgres
     await sequelize.sync(
-        {force: true}
+        { force: false }
     );
     // muestro que esta listo el server en el puerto
     app.listen(process.env.PORT || 3001, () => {

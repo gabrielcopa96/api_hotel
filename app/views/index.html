@@ -12,7 +12,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,600;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Documentacion</h1>
+    <h1>DOCUMENTACION</h1>
+    <section>
+        <h2 class="aviso">Aviso!</h2>
+        <h4>Antes hay que ejecutar los siguentes 2 endpoint para cargar las habitaciones y los metodos de pago por defecto</h4>
+        <div class="container__endpoint">
+            <h3 class="endpoint__post">POST</h3>
+            <div class="section__endpoint">
+                <p>/metodos</p>
+                <p> -> Carga 4 metodos de pago, Tarjeta de credito, Tarjeta de debito, ejectivo y transferencia</p>
+            </div>
+        </div>
+        <div class="container__endpoint">
+            <h3 class="endpoint__post">POST</h3>
+            <div class="section__endpoint">
+                <p>/habitaciones</p>
+                <p> -> Carga una lista de habitaciones por defecto, si no tiene la opcion de cargar uno por uno la que quiera</p>
+            </div>
+        </div>
+    </section>
     <section class="container__main">
         <h2>CLIENTES</h2>
         <div class="container__endpoint">
@@ -68,10 +86,17 @@
             </div>
         </div>
         <div class="container__endpoint">
+            <h3 class="endpoint__post">POST</h3>
+            <div class="section__endpoint">
+                <p>/reservas</p>
+                <p> -> Agrega una nueva reserva, con los datos del cliente, el cuarto y los dias de estadia </p>
+            </div>
+        </div>
+        <div class="container__endpoint">
             <h3 class="endpoint__put">PUT</h3>
             <div class="section__endpoint">
                 <p>/reservas/:id?status=status</p>
-                <p> -> Actualiza el estado del la reserva</p>
+                <p> -> Actualiza el estado del la reserva, solamente se pueden pasar 3 estados, Pendiente, Pagado o Eliminado.</p>
             </div>
         </div>
         <div class="container__endpoint">
@@ -96,6 +121,13 @@
             <div class="section__endpoint">
                 <p>/pagos/:id</p>
                 <p> -> Encuentra el pago que corresponda al ID pasado por parametro</p>
+            </div>
+        </div>
+        <div class="container__endpoint">
+            <h3 class="endpoint__put">PUT</h3>
+            <div class="section__endpoint">
+                <p>/pagos/:id</p>
+                <p> -> Actualiza el pago</p>
             </div>
         </div>
         <div class="container__endpoint">

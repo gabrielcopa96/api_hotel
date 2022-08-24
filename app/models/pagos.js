@@ -3,20 +3,13 @@ const db = require('../utils/database');
 const MetodoPago = require('./metodopago');
 
 
-const Pagos = db.define('pagos', {
+const Pagos = db.define('Pagos', {
     id_pago: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    // id_metodopago: {
-    //     type: Sequelize.INTEGER,
-    //     references: {
-    //         model: 'metodopagos',
-    //         key: 'id_metodo'
-    //     }
-    // },
     monto: {
         type: Sequelize.FLOAT,
     },
@@ -27,9 +20,6 @@ const Pagos = db.define('pagos', {
         type: Sequelize.FLOAT,
     }
 }, { timestamps: false})
-
-
-
 
 
 module.exports = Pagos;

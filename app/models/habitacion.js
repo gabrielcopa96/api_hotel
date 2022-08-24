@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../utils/database');
 
-const Habitacion = db.define('habitaciones', {
+const Habitacion = db.define('Habitaciones', {
     id_habitacion: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
@@ -17,8 +17,8 @@ const Habitacion = db.define('habitaciones', {
         allowNull: false
     },
     estado: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Sequelize.ENUM,
+        values: ['Ocupada', 'Libre']
     }
 }, { timestamps: false })
 

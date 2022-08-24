@@ -5,6 +5,7 @@ const router = require('express').Router();
 router
     .get('/', controller.obtenerPagos)
     .get('/:id', controller.obtenerPago)
+    .put('/:id', controller.actualizarPago)
     .delete('/:id', controller.eliminarPago);
 
 module.exports = router;

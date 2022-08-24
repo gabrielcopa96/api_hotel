@@ -19,45 +19,14 @@ const Reservas = db.define(
       allowNull: true,
     },
     estado: {
-      type: Sequelize.STRING,
-      allowNull: false,
-      defaultValue: "Pending"
+      type: Sequelize.ENUM,
+      values: ['Pendiente', 'Pagado', 'Eliminado']
     },
-    id_habitacion: {
+    dias: {
       type: Sequelize.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'habitaciones',
-        key: "id_habitacion"
-      }
-    },
-    id_cliente: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'clientes',
-        key: "id_cliente"
-      },
-    },
-    id_pago: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-      references: {
-        model: 'pagos',
-        key: "id_pago"
-      },
-    },
+    }
   },
   { timestamps: false }
 );
-
-Clientes.hasOne(Reservas);
-// Reservas.belongsTo(Clientes);
-
-Pagos.hasMany(Reservas);
-// Reservas.belongsTo(Pagos)
-
-Habitacion.hasOne(Reservas);
-// Reservas.belongsTo(Habitacion)
 
 module.exports = Reservas;

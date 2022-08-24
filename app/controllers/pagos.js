@@ -4,7 +4,9 @@ const MetodoPago = require('../models/metodopago');
 const obtenerPagos = async (req, res) => {
     
     try {
-        const getPay = await Pagos.findAll();
+        const getPay = await Pagos.findAll({
+            include: MetodoPago
+        });
         // Pregunta si existen pagos, devuelve todos
         // caso contrario devuelve un mensaje
         // que no existen datos en la tabla pagos
@@ -17,7 +19,7 @@ const obtenerPagos = async (req, res) => {
         res.json({
             ok: false,
             msg: 'No se pudo obtener los pagos',
-            error: error
+            error
         })
     }
 
@@ -28,7 +30,9 @@ const obtenerPago = async (req, res) => {
     
     try {
 
-        const pago = await Pagos.findByPk( id );
+        const pago = await Pagos.findByPk( id, {
+            include: MetodoPago
+        } );
         res.json(pago);
 
     } catch (error) {
@@ -64,8 +68,34 @@ const eliminarPago = async (req, res) => {
 
 }
 
+const actualizarPago = async (req, res) => {
+    const { id } = req.params
+    try {
+        
+        const pago = await Pagos.findByPk( id );
+
+        pago.set(req.body);
+        await pago.save();
+
+        res.json({
+            ok: true,
+            msg: 'Se actualizo correctamente el pago',
+            pago
+        })
+
+    } catch (error) {
+        
+        res.json({
+            ok: false,
+            msg: 'Hubo un error, no se pudo actualizar el pago'
+        })
+        
+    }
+}
+
 module.exports = {
     obtenerPagos,
     obtenerPago,
-    eliminarPago
+    eliminarPago,
+    actualizarPago
 }

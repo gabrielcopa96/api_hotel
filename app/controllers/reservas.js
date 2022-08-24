@@ -1,15 +1,68 @@
 const Reservas = require('../models/reservas');
 const Pagos = require('../models/pagos');
+const Habitacion = require('../models/habitacion');
+const Cliente = require('../models/clientes');
 
 const obtenerReservas = async (req, res) => {
+    const status = req.query.status
     try {
-        const getReserve = await Reservas.findAll();
-        // Pregunto si existen reservas
-        getReserve.length
-        ? res.json(getReserve)
-        : res.json({
-            msg: 'No existen reservas'
-        })
+        if(!status) {
+            const getReserve = await Reservas.findAll({
+                include: [
+                    {
+                        model: Pagos,
+                        attributes: ['total', 'monto', 'saldo'],
+                        required: false,
+                    },
+                    {
+                        model: Habitacion,
+                        attributes: ['codigo', 'piso'],
+                        required: false,
+                    },
+                    {
+                        model: Cliente,
+                        attributes: ['nombre', 'apellido', 'documento_unico'],
+                        required: false,
+                    }
+                ]
+            });
+            // Pregunto si existen reservas
+            getReserve.length
+                ? res.json(getReserve)
+                : res.json({
+                    msg: 'No existen reservas'
+                })
+        } else {
+            const getReserve = await Reservas.findAll({
+                where: {
+                    estado: status
+                },
+                include: [
+                    {
+                        model: Pagos,
+                        attributes: ['total', 'monto', 'saldo'],
+                        required: false,
+                    },
+                    {
+                        model: Habitacion,
+                        attributes: ['codigo', 'piso'],
+                        required: false,
+                    },
+                    {
+                        model: Cliente,
+                        attributes: ['nombre', 'apellido', 'documento_unico'],
+                        required: false,
+                    }
+                ]
+            });
+            // Pregunto si existen reservas
+            getReserve.length
+                ? res.json(getReserve)
+                : res.json({
+                    msg: 'No existen reservas'
+                })
+        }
+        
     } catch (error) {
         res.json({
             ok: false,
@@ -20,36 +73,45 @@ const obtenerReservas = async (req, res) => {
 }
 
 const crearReserva = async (req, res) => {
-    const { id_habitacion, estado, descripcion, id_cliente, total, id_metodopago, monto } = req.body
+    const { id_habitacion, estado, descripcion, id_cliente, total, id_metodopago, monto, dias } = req.body
 
     try {
         // Solo se puede crear una reserva si el cliente ya tiene los datos en la base de datos
         // en caso contrario primero se carga los datos del cliente que quiere hacer la reserva
         // y recien poder hacer la reserva.
-        if(id_cliente) {
+        if (id_cliente) {
 
             const pago = {
                 total,
-                id_metodopago,
+                metodoId: id_metodopago,
                 monto,
                 saldo: total - monto
             }
+
+            const cambioEstado = await Habitacion.findByPk(id_habitacion);
+
+            cambioEstado.set({
+                estado: "Ocupada"
+            })
+
+            await cambioEstado.save();
 
             // Creamos el pago, junto a su medio de pago
             const newPago = await Pagos.create(pago);
 
             const reserve = {
-                id_cliente,
-                id_pago: newPago.id_pago,
-                id_habitacion,
+                clienteId: id_cliente,
+                pagoId: newPago.id_pago,
+                habitacionId: id_habitacion,
                 estado,
-                descripcion
+                descripcion,
+                dias
             }
 
             // se hace crea la nueva reserva, con los datos del cliente, su habitacion
             // junto al metodo de pago utiizado.
             const newReserve = await Reservas.create(reserve);
-            
+
             return res.json(newReserve);
 
         } else {
@@ -73,12 +135,31 @@ const crearReserva = async (req, res) => {
 const obtenerUnaReserva = async (req, res) => {
     const { id } = req.params
     try {
-        const reserve = await Reservas.findByPk(id);
-        reserve.length
-        ? res.json(reserve)
+        const reserva = await Reservas.findByPk( id, {
+            include: [
+                {
+                    model: Pagos,
+                    attributes: ['total', 'monto', 'saldo'],
+                    required: false,
+                },
+                {
+                    model: Habitacion,
+                    attributes: ['codigo', 'piso'],
+                    required: false,
+                },
+                {
+                    model: Cliente,
+                    attributes: ['nombre', 'apellido', 'documento_unico'],
+                    required: false,
+                }
+            ]
+        } );
+
+        reserva !== null
+        ? res.json(reserva)
         : res.json({
             ok: false,
-            msg: 'No se encontro la reserva con ese id'
+            msg: 'No existe una reserva con ese id'
         })
     } catch (error) {
         res.json({
@@ -91,7 +172,20 @@ const obtenerUnaReserva = async (req, res) => {
 const actualizarEstadoReserva = async (req, res) => {
     const { id } = req.params
     try {
-        const reserve = await Reservas.findByPk( id );
+        const reserve = await Reservas.findOne( {
+            where: {
+                id_reserva: id
+            }
+        } );
+        // Obtengo el pago, para luego actualizarle el monto y el saldo setearlo a 0
+        const pago = await Pagos.findByPk(reserve.pagoId);
+        if(req.query.status === "Pagado") {
+            pago.set({
+                monto: pago.total,
+                saldo: 0
+            })
+            await pago.save();
+        }
         reserve.set({
             estado: req.query.status
         })
@@ -100,7 +194,7 @@ const actualizarEstadoReserva = async (req, res) => {
     } catch (error) {
         res.json({
             ok: false,
-            msg: 'No se pudo actualizar el estado'
+            msg: 'El estado solicitado no existe o no esta permitido'
         })
     }
 }
@@ -108,18 +202,38 @@ const actualizarEstadoReserva = async (req, res) => {
 const eliminarReserva = async (req, res) => {
     const { id } = req.params
     try {
-        const deleteReserve = await Reservas.destroy({
+        await Reservas.destroy({
             where: { id_reserva: id }
         })
         res.json({
             ok: true,
             msg: 'Se elimino correctamente la reserva',
-            data: deleteReserve
+            id_eliminado: id
         })
     } catch (error) {
         res.json({
             ok: false,
             msg: 'No se logro eliminar la reserva'
+        })
+    }
+}
+
+const obtenerReservaEstado = async (req, res) => {
+    const status = req.query.status
+    try {
+        
+        const reserva = await Reservas.findAll({
+            where: {
+                estado: status
+            }
+        })
+
+        res.json(reserva);
+
+    } catch (error) {
+        res.json({
+            ok: false,
+            msg: 'No existen datos'
         })
     }
 }

@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../utils/database');
 
-const MetodoPago = db.define('metodopagos', {
+const MetodoPago = db.define('MetodoPagos', {
     id_metodo: {
         type: Sequelize.INTEGER,
         autoIncrement: true,
