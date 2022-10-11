@@ -1,4 +1,4 @@
-# Challengue REST API HOTEL
+# REST API HOTEL
 
 Una api para sistemas de reservas de cuartos/habitaciones de hoteles
 
